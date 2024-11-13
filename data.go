@@ -1,12 +1,5 @@
 package chartjs
 
-import "math"
-
-type Point struct {
-	X float64  `json:"x"`
-	Y *float64 `json:"y"`
-}
-
 type Dataset struct {
 	Data    []Point           `json:"data,omitempty"`
 	Label   string            `json:"label,omitempty"`
@@ -22,11 +15,4 @@ type Clip struct {
 	Top    float32 `json:"top"`
 	Right  float32 `json:"right"`
 	Bottom float32 `json:"bottom"`
-}
-
-func ToFloat64Pointer(v float64) *float64 {
-	if math.IsNaN(v) {
-		return nil
-	}
-	return &v
 }

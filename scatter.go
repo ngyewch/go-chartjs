@@ -2,9 +2,9 @@ package chartjs
 
 type ScatterChartDataset struct {
 	*Dataset
-	BackgroundColor  *Color    `json:"backgroundColor,omitempty"`
+	BackgroundColor  string    `json:"backgroundColor,omitempty"`
 	BorderCapStyle   string    `json:"borderCapStyle,omitempty"`
-	BorderColor      *Color    `json:"borderColor,omitempty"`
+	BorderColor      string    `json:"borderColor,omitempty"`
 	BorderDash       []float32 `json:"borderDash,omitempty"`
 	BorderDashOffset float32   `json:"borderDashOffset,omitempty"`
 	BorderJoinStyle  string    `json:"borderJoinStyle,omitempty"`

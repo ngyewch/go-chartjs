@@ -12,6 +12,10 @@ const (
 	FontStyleInherit FontStyle = "inherit"
 )
 
+func (fs FontStyle) Pointer() *FontStyle {
+	return &fs
+}
+
 type FontWeight int
 
 const (
@@ -36,10 +40,14 @@ func (fw FontWeight) MarshalJSON() ([]byte, error) {
 	}
 }
 
+func (fw FontWeight) Pointer() *FontWeight {
+	return &fw
+}
+
 type FontSpec struct {
-	Family     string     `json:"family,omitempty"`
-	Size       float64    `json:"size,omitempty"`
-	Style      FontStyle  `json:"style,omitempty"`
-	Weight     FontWeight `json:"weight,omitempty"`
-	LineHeight string     `json:"lineHeight,omitempty"`
+	Family     string      `json:"family,omitempty"`
+	Size       *float64    `json:"size,omitempty"`  // default: 12
+	Style      *FontStyle  `json:"style,omitempty"` // default: FontStyleNormal
+	Weight     *FontWeight `json:"weight,omitempty"`
+	LineHeight string      `json:"lineHeight,omitempty"` // default: "1.2"
 }

@@ -19,7 +19,7 @@ type LegendPlugin struct {
 }
 
 type LegendTitle struct {
-	Color   *Color `json:"color,omitempty"`
+	Color   string `json:"color,omitempty"`
 	Display bool   `json:"display"`
 	// Font
 	// Padding
@@ -32,7 +32,7 @@ func (plugin *LegendPlugin) isPlugin() bool {
 
 type TitlePlugin struct {
 	Align    string `json:"align,omitempty"`
-	Color    *Color `json:"color,omitempty"`
+	Color    string `json:"color,omitempty"`
 	Display  bool   `json:"display"`
 	FullSize bool   `json:"fullSize"`
 	Position string `json:"position,omitempty"`
