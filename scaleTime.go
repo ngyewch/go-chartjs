@@ -28,9 +28,18 @@ type TimeScaleTickOptions struct {
 type TimeScaleOptions struct {
 	*CartesianScaleOptions
 
-	OffsetAfterAutoskip *bool `json:"offsetAfterAutoskip,omitempty"` // default: false
-	// Adapters
-	// Time
+	/**
+	 * OffsetAfterAutoskip: If true, bar chart offsets are computed with skipped tick sizes
+	 *
+	 * @since 3.8.0
+	 * @default false
+	 */
+	OffsetAfterAutoskip *bool `json:"offsetAfterAutoskip,omitempty"`
+
+	// TODO Adapters
+
+	Time *TimeScaleTimeOptions `json:"time,omitempty"`
+
 	Ticks *TimeScaleTickOptions `json:"ticks,omitempty"`
 }
 
@@ -49,4 +58,23 @@ func (scale *TimeScaleOptions) MarshalJSON() ([]byte, error) {
 		Type:  "time",
 		Proxy: Proxy(*scale),
 	})
+}
+
+type TimeScaleTimeOptions struct {
+	// TODO parser
+	// TODO round
+	// TODO isoWeekday
+
+	/**
+	 * DisplayFormats: Sets how different time units are displayed.
+	 */
+	DisplayFormats map[string]string `json:"displayFormats,omitempty"`
+
+	/**
+	 * TooltipFormat: The format string to use for the tooltip.
+	 */
+	TooltipFormat string `json:"tooltipFormat,omitempty"`
+
+	// TODO unit
+	// TODO minUnit
 }
