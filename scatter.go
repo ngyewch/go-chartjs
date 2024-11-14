@@ -1,7 +1,8 @@
 package chartjs
 
 type ScatterChartDataset struct {
-	*Dataset
+	Data []Point `json:"data,omitempty"`
+
 	BackgroundColor  string    `json:"backgroundColor,omitempty"`
 	BorderCapStyle   string    `json:"borderCapStyle,omitempty"`
 	BorderColor      string    `json:"borderColor,omitempty"`
@@ -27,5 +28,5 @@ type ScatterChartData struct {
 type ScatterChartConfig struct {
 	Type    string            `json:"type,omitempty"`
 	Data    *ScatterChartData `json:"data,omitempty"`
-	Options *Options          `json:"options,omitempty"`
+	Options *CoreChartOptions `json:"options,omitempty"`
 }

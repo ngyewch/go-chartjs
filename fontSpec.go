@@ -12,10 +12,6 @@ const (
 	FontStyleInherit FontStyle = "inherit"
 )
 
-func (fs FontStyle) Pointer() *FontStyle {
-	return &fs
-}
-
 type FontWeight int
 
 const (

@@ -8,10 +8,6 @@ const (
 	AlignEnd    Align = "end"
 )
 
-func (a Align) Pointer() *Align {
-	return &a
-}
-
 type TextAlign string
 
 const (
@@ -19,7 +15,3 @@ const (
 	TextAlignCenter TextAlign = "center"
 	TextAlignRight  TextAlign = "right"
 )
-
-func (ta TextAlign) Pointer() *TextAlign {
-	return &ta
-}
