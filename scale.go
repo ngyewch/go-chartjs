@@ -158,26 +158,6 @@ type BorderOptions struct {
 	Z *float64 `json:"z,omitempty"`
 }
 
-// IPadding
-
-type IPadding interface {
-	isPadding()
-}
-
-// SimplePadding
-
-type SimplePadding float64
-
-func (p SimplePadding) isPadding() {
-}
-
-// Padding
-
-type Padding ChartArea
-
-func (p Padding) isPadding() {
-}
-
 // TickOptions
 
 type TickOptionsMajor struct {
