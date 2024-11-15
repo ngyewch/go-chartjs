@@ -23,6 +23,9 @@ type LineChartConfiguration struct {
 	Options *LineControllerChartOptions `json:"options,omitempty"`
 }
 
+func (config *LineChartConfiguration) isChartConfiguration() {
+}
+
 func (config *LineChartConfiguration) MarshalJSON() ([]byte, error) {
 	type Proxy LineChartConfiguration
 	return json.Marshal(struct {
