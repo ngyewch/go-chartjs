@@ -2,6 +2,24 @@ package chartjs
 
 import "encoding/json"
 
+// TimeUnit
+
+type TimeUnit string
+
+const (
+	TimeUnitMillisecond TimeUnit = "millisecond"
+	TimeUnitSecond      TimeUnit = "second"
+	TimeUnitMinute      TimeUnit = "minute"
+	TimeUnitHour        TimeUnit = "hour"
+	TimeUnitDay         TimeUnit = "day"
+	TimeUnitWeek        TimeUnit = "week"
+	TimeUnitMonth       TimeUnit = "month"
+	TimeUnitQuarter     TimeUnit = "quarter"
+	TimeUnitYear        TimeUnit = "year"
+)
+
+// TimeScaleTickOptions
+
 type TimeScaleTickOptions struct {
 	*CartesianTickOptions
 
@@ -25,6 +43,8 @@ type TimeScaleTickOptions struct {
 	StepSize *float64 `json:"stepSize,omitempty"`
 }
 
+// TimeScaleOptions
+
 type TimeScaleOptions struct {
 	*CartesianScaleOptions
 
@@ -36,7 +56,10 @@ type TimeScaleOptions struct {
 	 */
 	OffsetAfterAutoskip *bool `json:"offsetAfterAutoskip,omitempty"`
 
-	// TODO Adapters
+	/**
+	 * Adapters: options for creating a new adapter instance
+	 */
+	Adapters *TimeScaleAdaptersOptions `json:"adapters,omitempty"`
 
 	Time *TimeScaleTimeOptions `json:"time,omitempty"`
 
@@ -60,10 +83,34 @@ func (scale *TimeScaleOptions) MarshalJSON() ([]byte, error) {
 	})
 }
 
+// TimeScaleAdaptersOptions
+
+type TimeScaleAdaptersOptions struct {
+	Date any `json:"date,omitempty"`
+}
+
+// TimeScaleTimeOptions
+
 type TimeScaleTimeOptions struct {
-	// TODO parser
-	// TODO round
-	// TODO isoWeekday
+	/**
+	 * Parser: Custom parser for dates.
+	 */
+	Parser string `json:"parser,omitempty"`
+
+	/**
+	 * Round: If defined, dates will be rounded to the start of this unit. See Time Units below for the allowed units.
+	 */
+	Round TimeUnit `json:"round,omitempty"`
+
+	/**
+	 * ISOWeekDay: If boolean and true and the unit is set to 'week', then the first day of the week will be Monday.
+	 * Otherwise, it will be Sunday.
+	 * If `number`, the index of the first day of the week (0 - Sunday, 6 - Saturday).
+	 *
+	 * @note boolean not supported
+	 * @default false
+	 */
+	ISOWeekday *int `json:"isoWeekday,omitempty"`
 
 	/**
 	 * DisplayFormats: Sets how different time units are displayed.
@@ -75,6 +122,16 @@ type TimeScaleTimeOptions struct {
 	 */
 	TooltipFormat string `json:"tooltipFormat,omitempty"`
 
-	// TODO unit
-	// TODO minUnit
+	/**
+	 * Unit: If defined, will force the unit to be a certain type. See Time Units section below for details.
+	 * @default false
+	 */
+	Unit TimeUnit `json:"unit,omitempty"`
+
+	/**
+	 * MinUnit: The minimum display format to be used for a time unit.
+	 *
+	 * @default 'millisecond'
+	 */
+	MinUnit TimeUnit `json:"minUnit,omitempty"`
 }
