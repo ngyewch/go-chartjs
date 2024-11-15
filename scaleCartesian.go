@@ -62,8 +62,6 @@ type CartesianScaleOptions struct {
 	 * @default false
 	 */
 	Stacked *bool `json:"stacked,omitempty"`
-
-	Ticks *CartesianTickOptions `json:"ticks,omitempty"`
 }
 
 type ICartesianScalePosition interface {

@@ -24,6 +24,26 @@ type TimeScaleTickOptions struct {
 	*CartesianTickOptions
 
 	/**
+	 * Min: User defined minimum value for the scale, overrides minimum value from data.
+	 */
+	Min Float64OrString `json:"min,omitempty"`
+
+	/**
+	 * Max: User defined maximum value for the scale, overrides maximum value from data.
+	 */
+	Max Float64OrString `json:"max,omitempty"`
+
+	/**
+	 * SuggestedMin: Adjustment used when calculating the maximum data value.
+	 */
+	SuggestedMin Float64OrString `json:"suggestedMin,omitempty"`
+
+	/**
+	 * SuggestedMax: Adjustment used when calculating the minimum data value.
+	 */
+	SuggestedMax Float64OrString `json:"suggestedMax,omitempty"`
+
+	/**
 	 * Source: Ticks generation input values:
 	 * - 'auto': generates "optimal" ticks based on scale size and time options.
 	 * - 'data': generates ticks from data (including labels from data `{t|x|y}` objects).
