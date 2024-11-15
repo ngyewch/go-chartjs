@@ -3,6 +3,7 @@ package line
 import (
 	"github.com/ngyewch/go-chartjs"
 	"go.octolab.org/pointer"
+	"time"
 )
 
 func Example1() (*chartjs.LineChartConfiguration, error) {
@@ -143,19 +144,19 @@ func Example2() (*chartjs.LineChartConfiguration, error) {
 					},
 					Data: []chartjs.Point{
 						{
-							X: 1704042000000,
+							X: float64(time.Date(2024, 1, 1, 0, 0, 0, 0, time.Local).UnixMilli()),
 							Y: pointer.ToFloat64(10),
 						},
 						{
-							X: 1704045600000,
+							X: float64(time.Date(2024, 1, 1, 1, 0, 0, 0, time.Local).UnixMilli()),
 							Y: pointer.ToFloat64(23.7),
 						},
 						{
-							X: 1704049200000,
+							X: float64(time.Date(2024, 1, 1, 2, 0, 0, 0, time.Local).UnixMilli()),
 							Y: pointer.ToFloat64(12.4),
 						},
 						{
-							X: 1704052800000,
+							X: float64(time.Date(2024, 1, 1, 3, 0, 0, 0, time.Local).UnixMilli()),
 							Y: pointer.ToFloat64(5.1),
 						},
 					},
