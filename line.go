@@ -26,7 +26,7 @@ const (
 	SteppedMiddle         = "middle"
 )
 
-func (s Stepped) isIStepped() {}
+func (s Stepped) isStepped() {}
 
 //
 
@@ -40,7 +40,7 @@ const (
 	FillTargetShape  FillTarget = "shape"
 )
 
-func (v FillTarget) isIFillTarget() {}
+func (v FillTarget) isFillTarget() {}
 
 //
 

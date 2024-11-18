@@ -62,11 +62,7 @@ type ITitlePadding interface {
 	isTitlePadding()
 }
 
-type TitlePadding float64
-
-func (p TitlePadding) isTitlePadding() {}
-
-type TitlePaddingSeparate struct {
+type TitlePadding struct {
 	/** Top, padding on the (relative) top side of this axis label. */
 	Top *float64 `json:"top,omitempty"`
 
@@ -77,4 +73,4 @@ type TitlePaddingSeparate struct {
 	Y *float64 `json:"y,omitempty"`
 }
 
-func (p TitlePaddingSeparate) isTitlePadding() {}
+func (p TitlePadding) isTitlePadding() {}

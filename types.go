@@ -15,11 +15,11 @@ type StringOrStringArray interface {
 // IStepped
 
 type IStepped interface {
-	isIStepped()
+	isStepped()
 }
 
 type IFillTarget interface {
-	isIFillTarget()
+	isFillTarget()
 }
 
 // Float64
@@ -28,7 +28,9 @@ type Float64 float64
 
 func (v Float64) isFloat64OrString() {}
 
-func (v Float64) isIFillTarget() {}
+func (v Float64) isFillTarget() {}
+
+func (v Float64) isTitlePadding() {}
 
 // String
 
@@ -38,7 +40,7 @@ func (v String) isFloat64OrString() {}
 
 func (v String) isStringOrStringArray() {}
 
-func (v String) isIFillTarget() {}
+func (v String) isFillTarget() {}
 
 // StringArray
 
@@ -50,6 +52,6 @@ func (v StringArray) isStringOrStringArray() {}
 
 type Bool bool
 
-func (v Bool) isIStepped() {}
+func (v Bool) isStepped() {}
 
-func (v Bool) isIFillTarget() {}
+func (v Bool) isFillTarget() {}
