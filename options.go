@@ -291,7 +291,7 @@ func (ps PointStyle) MarshalJSON() ([]byte, error) {
 	if ps == PointStyleFalse {
 		return json.Marshal(false)
 	} else {
-		return ps.MarshalJSON()
+		return json.Marshal(string(ps))
 	}
 }
 
