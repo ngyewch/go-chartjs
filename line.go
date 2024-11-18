@@ -42,6 +42,25 @@ const (
 
 func (v FillTarget) isFillTarget() {}
 
+type ComplexFillTarget struct {
+	/**
+	 * Target: The accepted values are the same as the filling mode values, so you may use absolute and relative dataset indexes and/or boundaries.
+	 */
+	Target IFillTarget `json:"target"`
+
+	/**
+	 * Above: If no color is set, the default color will be the background color of the chart.
+	 */
+	Above string
+
+	/**
+	 * Below: Same as the above.
+	 */
+	Below string
+}
+
+func (v ComplexFillTarget) isFillTarget() {}
+
 //
 
 type LineChartConfiguration struct {
