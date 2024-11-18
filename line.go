@@ -18,6 +18,32 @@ func (sg SpanGapsNumeric) isSpanGaps() {}
 
 //
 
+type Stepped string
+
+const (
+	SteppedBefore Stepped = "before"
+	SteppedAfter  Stepped = "after"
+	SteppedMiddle         = "middle"
+)
+
+func (s Stepped) isIStepped() {}
+
+//
+
+type FillTarget string
+
+const (
+	FillTargetStart  FillTarget = "start"
+	FillTargetEnd    FillTarget = "end"
+	FillTargetOrigin FillTarget = "origin"
+	FillTargetStack  FillTarget = "stack"
+	FillTargetShape  FillTarget = "shape"
+)
+
+func (v FillTarget) isIFillTarget() {}
+
+//
+
 type LineChartConfiguration struct {
 	Data    *LineChartData              `json:"data,omitempty"`
 	Options *LineControllerChartOptions `json:"options,omitempty"`
@@ -97,8 +123,16 @@ type LineOptions struct {
 	 */
 	Tension *float64 `json:"tension,omitempty"`
 
-	// TODO Stepped
-	// TODO Fill
+	/**
+	 * Stepped: true to show the line as a stepped line (tension will be ignored).
+	 * @default false
+	 */
+	Stepped IStepped `json:"stepped,omitempty"`
+
+	/**
+	 * Fill: Both line and radar charts support a fill option on the dataset object which can be used to create area between two datasets or a dataset and a boundary, i.e. the scale origin, start or end
+	 */
+	Fill IFillTarget `json:"fill,omitempty"`
 
 	/**
 	 * SpanGaps controls whether gaps will be spanned.

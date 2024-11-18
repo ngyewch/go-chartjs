@@ -32,29 +32,28 @@ type ExamplesData struct {
 func doMain(context *cli.Context) error {
 	var examplesData ExamplesData
 
-	line1, err := line.Example1()
-	if err != nil {
-		return err
+	addExamples := func(suppliers ...func() (chartjs.IChartConfiguration, error)) error {
+		for _, supplier := range suppliers {
+			chartConfiguration, err := supplier()
+			if err != nil {
+				return err
+			}
+			examplesData.Charts = append(examplesData.Charts, chartConfiguration)
+		}
+		return nil
 	}
-	examplesData.Charts = append(examplesData.Charts, line1)
 
-	line2, err := line.Example2()
+	err := addExamples(
+		line.Example1,
+		line.Example2,
+		line.Example3,
+		line.Example4,
+		line.Example5,
+		line.Example6,
+	)
 	if err != nil {
 		return err
 	}
-	examplesData.Charts = append(examplesData.Charts, line2)
-
-	line3, err := line.Example3()
-	if err != nil {
-		return err
-	}
-	examplesData.Charts = append(examplesData.Charts, line3)
-
-	line4, err := line.Example4()
-	if err != nil {
-		return err
-	}
-	examplesData.Charts = append(examplesData.Charts, line4)
 
 	templates, err := template.New("templates").
 		ParseFS(resources.TemplateFS, "templates/*.gohtml")

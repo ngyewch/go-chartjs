@@ -7,7 +7,7 @@ import (
 	"time"
 )
 
-func Example1() (*chartjs.LineChartConfiguration, error) {
+func Example1() (chartjs.IChartConfiguration, error) {
 	data := []chartjs.Point{
 		{
 			X: 0,
@@ -135,7 +135,7 @@ func Example1() (*chartjs.LineChartConfiguration, error) {
 	}, nil
 }
 
-func Example2() (*chartjs.LineChartConfiguration, error) {
+func Example2() (chartjs.IChartConfiguration, error) {
 	const minY = -100
 	const maxY = 100
 	var data []chartjs.Point
@@ -202,7 +202,7 @@ func Example2() (*chartjs.LineChartConfiguration, error) {
 	}, nil
 }
 
-func Example3() (*chartjs.LineChartConfiguration, error) {
+func Example3() (chartjs.IChartConfiguration, error) {
 	const minY = -100
 	const maxY = 100
 	var data1 []chartjs.Point
@@ -272,7 +272,7 @@ func Example3() (*chartjs.LineChartConfiguration, error) {
 	}, nil
 }
 
-func Example4() (*chartjs.LineChartConfiguration, error) {
+func Example4() (chartjs.IChartConfiguration, error) {
 	const minY = -100
 	const maxY = 100
 	var data []chartjs.Point
@@ -318,6 +318,137 @@ func Example4() (*chartjs.LineChartConfiguration, error) {
 				Title: &chartjs.TitleOptions{
 					Display: pointer.ToBool(true),
 					Text:    chartjs.String("Line Chart / Point Styling"),
+				},
+			},
+		},
+	}, nil
+}
+
+func Example5() (chartjs.IChartConfiguration, error) {
+	const minY = -100
+	const maxY = 100
+	var data []chartjs.Point
+	for i := 0; i < 8; i++ {
+		data = append(data, chartjs.Point{
+			X: float64(i),
+			Y: pointer.ToFloat64(randFloat64(minY, maxY)),
+		})
+	}
+	return &chartjs.LineChartConfiguration{
+		Data: &chartjs.LineChartData{
+			Datasets: []*chartjs.LineChartDataset{
+				{
+					Data: data,
+					ControllerDatasetOptions: &chartjs.ControllerDatasetOptions{
+						Label: "Dataset",
+					},
+					LineOptions: &chartjs.LineOptions{
+						CommonElementOptions: &chartjs.CommonElementOptions{
+							BorderColor:     "red",
+							BackgroundColor: "rgba(255, 0, 0, 0.5)",
+						},
+						Stepped: chartjs.Bool(true),
+					},
+				},
+			},
+		},
+		Options: &chartjs.LineControllerChartOptions{
+			CoreChartOptions: &chartjs.CoreChartOptions{
+				MaintainAspectRatio: pointer.ToBool(false),
+				Interaction: &chartjs.CoreInteractionOptions{
+					Intersect: pointer.ToBool(false),
+					Axis:      "x",
+				},
+			},
+			Scales: map[string]chartjs.ICartesianScaleType{
+				"x": &chartjs.LinearScaleOptions{},
+				"y": &chartjs.LinearScaleOptions{},
+			},
+			Plugins: &chartjs.PluginOptions{
+				Title: &chartjs.TitleOptions{
+					Display: pointer.ToBool(true),
+					Text:    chartjs.String("Line Chart / Stepped"),
+				},
+			},
+		},
+	}, nil
+}
+
+func Example6() (chartjs.IChartConfiguration, error) {
+	const minY = -100
+	const maxY = 100
+	var data1 []chartjs.Point
+	var data2 []chartjs.Point
+	var data3 []chartjs.Point
+	for i := 0; i < 8; i++ {
+		data1 = append(data1, chartjs.Point{
+			X: float64(i),
+			Y: pointer.ToFloat64(randFloat64(minY, maxY)),
+		})
+		data2 = append(data2, chartjs.Point{
+			X: float64(i),
+			Y: pointer.ToFloat64(randFloat64(minY, maxY)),
+		})
+		data3 = append(data3, chartjs.Point{
+			X: float64(i),
+			Y: pointer.ToFloat64(randFloat64(minY, maxY)),
+		})
+	}
+	return &chartjs.LineChartConfiguration{
+		Data: &chartjs.LineChartData{
+			Datasets: []*chartjs.LineChartDataset{
+				{
+					Data: data1,
+					ControllerDatasetOptions: &chartjs.ControllerDatasetOptions{
+						Label: "Unfilled",
+					},
+					LineOptions: &chartjs.LineOptions{
+						CommonElementOptions: &chartjs.CommonElementOptions{
+							BackgroundColor: "blue",
+							BorderColor:     "blue",
+						},
+					},
+				},
+				{
+					Data: data2,
+					ControllerDatasetOptions: &chartjs.ControllerDatasetOptions{
+						Label: "Dashed",
+					},
+					LineOptions: &chartjs.LineOptions{
+						CommonElementOptions: &chartjs.CommonElementOptions{
+							BackgroundColor: "green",
+							BorderColor:     "green",
+						},
+						BorderDash: []float64{5, 5},
+					},
+				},
+				{
+					Data: data3,
+					ControllerDatasetOptions: &chartjs.ControllerDatasetOptions{
+						Label: "Filled",
+					},
+					LineOptions: &chartjs.LineOptions{
+						CommonElementOptions: &chartjs.CommonElementOptions{
+							BackgroundColor: "red",
+							BorderColor:     "red",
+						},
+						Fill: chartjs.Bool(true),
+					},
+				},
+			},
+		},
+		Options: &chartjs.LineControllerChartOptions{
+			CoreChartOptions: &chartjs.CoreChartOptions{
+				MaintainAspectRatio: pointer.ToBool(false),
+			},
+			Scales: map[string]chartjs.ICartesianScaleType{
+				"x": &chartjs.LinearScaleOptions{},
+				"y": &chartjs.LinearScaleOptions{},
+			},
+			Plugins: &chartjs.PluginOptions{
+				Title: &chartjs.TitleOptions{
+					Display: pointer.ToBool(true),
+					Text:    chartjs.String("Line Chart / Line Styling"),
 				},
 			},
 		},
