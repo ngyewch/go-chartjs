@@ -55,7 +55,7 @@ type TitleOptions struct {
 	/**
 	 * Title text to display. If specified as an array, text is rendered on multiple lines.
 	 */
-	Text ITitleText `json:"text,omitempty"`
+	Text StringOrStringArray `json:"text,omitempty"`
 }
 
 type ITitlePadding interface {
@@ -78,15 +78,3 @@ type TitlePaddingSeparate struct {
 }
 
 func (p TitlePaddingSeparate) isTitlePadding() {}
-
-type ITitleText interface {
-	isTitleText()
-}
-
-type TitleText string
-
-func (t TitleText) isTitleText() {}
-
-type TitleTextArray []string
-
-func (t TitleTextArray) isTitleText() {}

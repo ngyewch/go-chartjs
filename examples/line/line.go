@@ -127,7 +127,7 @@ func Example1() (*chartjs.LineChartConfiguration, error) {
 			Plugins: &chartjs.PluginOptions{
 				Title: &chartjs.TitleOptions{
 					Display: pointer.ToBool(true),
-					Text:    chartjs.TitleText("Chart.js Line Chart - Cubic interpolation mode"),
+					Text:    chartjs.String("Chart.js Line Chart - Cubic interpolation mode"),
 				},
 			},
 		},
@@ -200,7 +200,7 @@ func Example2() (*chartjs.LineChartConfiguration, error) {
 			Plugins: &chartjs.PluginOptions{
 				Title: &chartjs.TitleOptions{
 					Display: pointer.ToBool(true),
-					Text:    chartjs.TitleText("Chart.js Line Chart - Time scale"),
+					Text:    chartjs.String("Chart.js Line Chart - Time scale"),
 				},
 			},
 		},
