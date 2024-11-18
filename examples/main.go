@@ -44,6 +44,18 @@ func doMain(context *cli.Context) error {
 	}
 	examplesData.Charts = append(examplesData.Charts, line2)
 
+	line3, err := line.Example3()
+	if err != nil {
+		return err
+	}
+	examplesData.Charts = append(examplesData.Charts, line3)
+
+	line4, err := line.Example4()
+	if err != nil {
+		return err
+	}
+	examplesData.Charts = append(examplesData.Charts, line4)
+
 	templates, err := template.New("templates").
 		ParseFS(resources.TemplateFS, "templates/*.gohtml")
 	if err != nil {

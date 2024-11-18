@@ -3,6 +3,7 @@ package line
 import (
 	"github.com/ngyewch/go-chartjs"
 	"go.octolab.org/pointer"
+	"math/rand/v2"
 	"time"
 )
 
@@ -127,7 +128,7 @@ func Example1() (*chartjs.LineChartConfiguration, error) {
 			Plugins: &chartjs.PluginOptions{
 				Title: &chartjs.TitleOptions{
 					Display: pointer.ToBool(true),
-					Text:    chartjs.String("Chart.js Line Chart - Cubic interpolation mode"),
+					Text:    chartjs.String("Line Chart / Cubic interpolation mode"),
 				},
 			},
 		},
@@ -135,6 +136,17 @@ func Example1() (*chartjs.LineChartConfiguration, error) {
 }
 
 func Example2() (*chartjs.LineChartConfiguration, error) {
+	const minY = -100
+	const maxY = 100
+	var data []chartjs.Point
+	t := time.Date(2024, 1, 1, 0, 0, 0, 0, time.Local)
+	for i := 0; i < 8; i++ {
+		data = append(data, chartjs.Point{
+			X: float64(t.UnixMilli()),
+			Y: pointer.ToFloat64(randFloat64(minY, maxY)),
+		})
+		t = t.Add(1 * time.Hour)
+	}
 	return &chartjs.LineChartConfiguration{
 		Data: &chartjs.LineChartData{
 			Datasets: []*chartjs.LineChartDataset{
@@ -142,24 +154,7 @@ func Example2() (*chartjs.LineChartConfiguration, error) {
 					ControllerDatasetOptions: &chartjs.ControllerDatasetOptions{
 						Label: "Series 1",
 					},
-					Data: []chartjs.Point{
-						{
-							X: float64(time.Date(2024, 1, 1, 0, 0, 0, 0, time.Local).UnixMilli()),
-							Y: pointer.ToFloat64(10),
-						},
-						{
-							X: float64(time.Date(2024, 1, 1, 1, 0, 0, 0, time.Local).UnixMilli()),
-							Y: pointer.ToFloat64(23.7),
-						},
-						{
-							X: float64(time.Date(2024, 1, 1, 2, 0, 0, 0, time.Local).UnixMilli()),
-							Y: pointer.ToFloat64(12.4),
-						},
-						{
-							X: float64(time.Date(2024, 1, 1, 3, 0, 0, 0, time.Local).UnixMilli()),
-							Y: pointer.ToFloat64(5.1),
-						},
-					},
+					Data: data,
 				},
 			},
 		},
@@ -200,9 +195,135 @@ func Example2() (*chartjs.LineChartConfiguration, error) {
 			Plugins: &chartjs.PluginOptions{
 				Title: &chartjs.TitleOptions{
 					Display: pointer.ToBool(true),
-					Text:    chartjs.String("Chart.js Line Chart - Time scale"),
+					Text:    chartjs.String("Line Chart / Time scale"),
 				},
 			},
 		},
 	}, nil
+}
+
+func Example3() (*chartjs.LineChartConfiguration, error) {
+	const minY = -100
+	const maxY = 100
+	var data1 []chartjs.Point
+	var data2 []chartjs.Point
+	for i := 0; i < 8; i++ {
+		data1 = append(data1, chartjs.Point{
+			X: float64(i),
+			Y: pointer.ToFloat64(randFloat64(minY, maxY)),
+		})
+		data2 = append(data2, chartjs.Point{
+			X: float64(i),
+			Y: pointer.ToFloat64(randFloat64(minY, maxY)),
+		})
+	}
+	return &chartjs.LineChartConfiguration{
+		Data: &chartjs.LineChartData{
+			Datasets: []*chartjs.LineChartDataset{
+				{
+					Data:    data1,
+					YAxisID: "y",
+					ControllerDatasetOptions: &chartjs.ControllerDatasetOptions{
+						Label: "Dataset 1",
+					},
+					LineOptions: &chartjs.LineOptions{
+						CommonElementOptions: &chartjs.CommonElementOptions{
+							BorderColor: "red",
+						},
+					},
+				},
+				{
+					Data:    data2,
+					YAxisID: "y1",
+					ControllerDatasetOptions: &chartjs.ControllerDatasetOptions{
+						Label: "Dataset 2",
+					},
+					LineOptions: &chartjs.LineOptions{
+						CommonElementOptions: &chartjs.CommonElementOptions{
+							BorderColor: "blue",
+						},
+					},
+				},
+			},
+		},
+		Options: &chartjs.LineControllerChartOptions{
+			CoreChartOptions: &chartjs.CoreChartOptions{
+				MaintainAspectRatio: pointer.ToBool(false),
+			},
+			Scales: map[string]chartjs.ICartesianScaleType{
+				"x": &chartjs.LinearScaleOptions{},
+				"y": &chartjs.LinearScaleOptions{},
+				"y1": &chartjs.LinearScaleOptions{
+					CartesianScaleOptions: &chartjs.CartesianScaleOptions{
+						Position: chartjs.CartesianAxisPositionRight,
+						Grid: &chartjs.GridLineOptions{
+							DrawOnChartArea: pointer.ToBool(false),
+						},
+					},
+				},
+			},
+			Plugins: &chartjs.PluginOptions{
+				Title: &chartjs.TitleOptions{
+					Display: pointer.ToBool(true),
+					Text:    chartjs.String("Line Chart / Multi Axis"),
+				},
+			},
+		},
+	}, nil
+}
+
+func Example4() (*chartjs.LineChartConfiguration, error) {
+	const minY = -100
+	const maxY = 100
+	var data []chartjs.Point
+	for i := 0; i < 8; i++ {
+		data = append(data, chartjs.Point{
+			X: float64(i),
+			Y: pointer.ToFloat64(randFloat64(minY, maxY)),
+		})
+	}
+	return &chartjs.LineChartConfiguration{
+		Data: &chartjs.LineChartData{
+			Datasets: []*chartjs.LineChartDataset{
+				{
+					Data: data,
+					ControllerDatasetOptions: &chartjs.ControllerDatasetOptions{
+						Label: "Dataset",
+					},
+					LineOptions: &chartjs.LineOptions{
+						CommonElementOptions: &chartjs.CommonElementOptions{
+							BorderColor:     "red",
+							BackgroundColor: "rgba(255, 0, 0, 0.5)",
+						},
+					},
+					PointPrefixedOptions: &chartjs.PointPrefixedOptions{
+						PointRadius: pointer.ToFloat64(10),
+						PointStyle:  chartjs.PointStyleCircle,
+					},
+					PointPrefixedHoverOptions: &chartjs.PointPrefixedHoverOptions{
+						PointHoverRadius: pointer.ToFloat64(15),
+					},
+				},
+			},
+		},
+		Options: &chartjs.LineControllerChartOptions{
+			CoreChartOptions: &chartjs.CoreChartOptions{
+				MaintainAspectRatio: pointer.ToBool(false),
+			},
+			Scales: map[string]chartjs.ICartesianScaleType{
+				"x": &chartjs.LinearScaleOptions{},
+				"y": &chartjs.LinearScaleOptions{},
+			},
+			Plugins: &chartjs.PluginOptions{
+				Title: &chartjs.TitleOptions{
+					Display: pointer.ToBool(true),
+					Text:    chartjs.String("Line Chart / Point Styling"),
+				},
+			},
+		},
+	}, nil
+}
+
+func randFloat64(min float64, max float64) float64 {
+	return (rand.Float64() * (max - min)) + min
 }
