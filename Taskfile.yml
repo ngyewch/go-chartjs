@@ -4,6 +4,8 @@ tasks:
   build:
     desc: Build
     cmds:
+      - go mod download
+      - go mod tidy
       - mkdir -p build
       - go build -o build/ github.com/ngyewch/go-chartjs/...
 
