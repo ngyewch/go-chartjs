@@ -3,7 +3,7 @@ module github.com/ngyewch/go-chartjs
 go 1.23.0
 
 require (
-	github.com/urfave/cli/v2 v2.27.5
+	github.com/urfave/cli/v2 v2.27.6
 	go.octolab.org v0.12.2
 )
 
