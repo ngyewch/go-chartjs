@@ -105,6 +105,9 @@ func Example1() (chartjs.IChartConfiguration, error) {
 		},
 		Options: &chartjs.LineControllerChartOptions{
 			CoreChartOptions: &chartjs.CoreChartOptions{
+				Animation: &chartjs.AnimationSpec{
+					Duration: pointer.ToFloat64(0),
+				},
 				MaintainAspectRatio: pointer.ToBool(false),
 			},
 			Scales: map[string]chartjs.ICartesianScaleType{
@@ -160,6 +163,9 @@ func Example2() (chartjs.IChartConfiguration, error) {
 		},
 		Options: &chartjs.LineControllerChartOptions{
 			CoreChartOptions: &chartjs.CoreChartOptions{
+				Animation: &chartjs.AnimationSpec{
+					Duration: pointer.ToFloat64(0),
+				},
 				MaintainAspectRatio: pointer.ToBool(false),
 			},
 			Scales: map[string]chartjs.ICartesianScaleType{
@@ -248,6 +254,9 @@ func Example3() (chartjs.IChartConfiguration, error) {
 		},
 		Options: &chartjs.LineControllerChartOptions{
 			CoreChartOptions: &chartjs.CoreChartOptions{
+				Animation: &chartjs.AnimationSpec{
+					Duration: pointer.ToFloat64(0),
+				},
 				MaintainAspectRatio: pointer.ToBool(false),
 			},
 			Scales: map[string]chartjs.ICartesianScaleType{
@@ -308,6 +317,9 @@ func Example4() (chartjs.IChartConfiguration, error) {
 		},
 		Options: &chartjs.LineControllerChartOptions{
 			CoreChartOptions: &chartjs.CoreChartOptions{
+				Animation: &chartjs.AnimationSpec{
+					Duration: pointer.ToFloat64(0),
+				},
 				MaintainAspectRatio: pointer.ToBool(false),
 			},
 			Scales: map[string]chartjs.ICartesianScaleType{
@@ -354,6 +366,9 @@ func Example5() (chartjs.IChartConfiguration, error) {
 		},
 		Options: &chartjs.LineControllerChartOptions{
 			CoreChartOptions: &chartjs.CoreChartOptions{
+				Animation: &chartjs.AnimationSpec{
+					Duration: pointer.ToFloat64(0),
+				},
 				MaintainAspectRatio: pointer.ToBool(false),
 				Interaction: &chartjs.CoreInteractionOptions{
 					Intersect: pointer.ToBool(false),
@@ -439,6 +454,9 @@ func Example6() (chartjs.IChartConfiguration, error) {
 		},
 		Options: &chartjs.LineControllerChartOptions{
 			CoreChartOptions: &chartjs.CoreChartOptions{
+				Animation: &chartjs.AnimationSpec{
+					Duration: pointer.ToFloat64(0),
+				},
 				MaintainAspectRatio: pointer.ToBool(false),
 			},
 			Scales: map[string]chartjs.ICartesianScaleType{

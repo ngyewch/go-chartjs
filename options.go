@@ -3,6 +3,8 @@ package chartjs
 import "encoding/json"
 
 type CoreChartOptions struct {
+	Animation *AnimationSpec `json:"animation,omitempty"`
+
 	// TODO datasets
 
 	/**
@@ -315,4 +317,11 @@ type PointPrefixedHoverOptions struct {
 	 * PointHoverRadius: The radius of the point when hovered.
 	 */
 	PointHoverRadius *float64 `json:"pointHoverRadius,omitempty"`
+}
+
+type AnimationSpec struct {
+	Delay    *float64 `json:"delay,omitempty"`
+	Duration *float64 `json:"duration,omitempty"`
+	Easing   *string  `json:"easing,omitempty"`
+	Loop     *bool    `json:"loop,omitempty"`
 }
